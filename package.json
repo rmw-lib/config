@@ -12,6 +12,7 @@
     "/lib"
   ],
   "dependencies": {
+    "yaml": "^2.0.0-0"
   },
   "devDependencies": {
     "@rmw/md-include": "^0.4.5",
