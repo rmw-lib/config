@@ -1,9 +1,10 @@
 #!/usr/bin/env coffee
-import config from '@rmw/config'
-# import {config as Xxx} from '@rmw/config'
+import * as CONFIG from '@rmw/config'
 import test from 'tape-catch'
 
 test 'config', (t)=>
-  t.equal config(1,2),3
-  # t.deepEqual Xxx([1],[2]),[3]
+  key = "user/1"
+  data = {test:"12",2:11}
+  CONFIG.set(key,data)
+  t.deepEqual data, CONFIG.get key
   t.end()

@@ -12,6 +12,7 @@
     "/lib"
   ],
   "dependencies": {
+    "@rmw/env": "^0.0.2",
     "yaml": "^2.0.0-0"
   },
   "devDependencies": {
