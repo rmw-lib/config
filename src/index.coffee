@@ -3,7 +3,7 @@
 import DIR_CONFIG from '@rmw/env/dir/config'
 import YAML from 'yaml'
 import {dirname, join} from 'path'
-import {readFileSync,writeFileSync,mkdirSync} from 'fs'
+import {existsSync, readFileSync,writeFileSync,mkdirSync} from 'fs'
 
 export set = (filepath, data)=>
   filepath = join DIR_CONFIG,filepath+".yml"
@@ -17,5 +17,7 @@ export set = (filepath, data)=>
 
 export get = (filepath)=>
   filepath = join DIR_CONFIG,filepath+".yml"
-  data = readFileSync(filepath, 'utf8')
-  YAML.parse data
+  if existsSync(filepath)
+    data = readFileSync(filepath, 'utf8')
+    YAML.parse data
+  return {}
