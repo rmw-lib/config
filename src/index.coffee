@@ -19,5 +19,5 @@ export get = (filepath)=>
   filepath = join DIR_CONFIG,filepath+".yml"
   if existsSync(filepath)
     data = readFileSync(filepath, 'utf8')
-    YAML.parse data
+    return YAML.parse data
   return {}
