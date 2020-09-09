@@ -1,29 +1,29 @@
 <!-- 本文件由 ./readme.make.md 自动生成，请不要直接修改此文件 -->
 
-# @rmw/xxx
+# @rmw/config
 
 ##  安装
 
 ```
-yarn add @rmw/xxx
+yarn add @rmw/config
 ```
 
 或者
 
 ```
-npm install @rmw/xxx
+npm install @rmw/config
 ```
 
 ## 使用
 
 ```
 #!/usr/bin/env coffee
-import xxx from '@rmw/xxx'
-# import {xxx as Xxx} from '@rmw/xxx'
+import config from '@rmw/config'
+# import {config as Xxx} from '@rmw/config'
 import test from 'tape-catch'
 
-test 'xxx', (t)=>
-  t.equal xxx(1,2),3
+test 'config', (t)=>
+  t.equal config(1,2),3
   # t.deepEqual Xxx([1],[2]),[3]
   t.end()
 

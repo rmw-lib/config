@@ -1,9 +1,9 @@
 #!/usr/bin/env coffee
-import xxx from '@rmw/xxx'
-# import {xxx as Xxx} from '@rmw/xxx'
+import config from '@rmw/config'
+# import {config as Xxx} from '@rmw/config'
 import test from 'tape-catch'
 
-test 'xxx', (t)=>
-  t.equal xxx(1,2),3
+test 'config', (t)=>
+  t.equal config(1,2),3
   # t.deepEqual Xxx([1],[2]),[3]
   t.end()
