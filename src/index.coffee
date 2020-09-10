@@ -1,12 +1,14 @@
 #!/usr/bin/env coffee
 
-import DIR_CONFIG from '@rmw/env/dir/config'
+import {Env} from '@rmw/env'
 import YAML from 'yaml'
 import {dirname, join} from 'path'
 import {existsSync, readFileSync,writeFileSync,mkdirSync} from 'fs'
 
+ENV = Env(1)
+
 export set = (filepath, data)=>
-  filepath = join DIR_CONFIG,filepath+".yml"
+  filepath = join ENV.CONFIG,filepath+".yml"
   dirpath = dirname filepath
   mkdirSync(dirpath, recursive:true)
   out = YAML.stringify data
@@ -16,7 +18,7 @@ export set = (filepath, data)=>
   )
 
 export get = (filepath)=>
-  filepath = join DIR_CONFIG,filepath+".yml"
+  filepath = join ENV.CONFIG,filepath+".yml"
   if existsSync(filepath)
     data = readFileSync(filepath, 'utf8')
     return YAML.parse data
