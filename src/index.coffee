@@ -5,7 +5,7 @@ import YAML from 'yaml'
 import {dirname, join} from 'path'
 import {existsSync, readFileSync,writeFileSync,mkdirSync,unlinkSync} from 'fs'
 
-ENV = Env(1)
+ENV = Env(2)
 
 _filepath = (filepath)=>
   if filepath
