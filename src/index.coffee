@@ -16,8 +16,8 @@ _filepath = (filepath)=>
 
 export set = (filepath, data)=>
   if data == undefined
-    filepath = undefined
     data = filepath
+    filepath = undefined
   filepath = _filepath filepath
   if data == null
     if existsSync(filepath)
