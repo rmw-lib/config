@@ -26,6 +26,7 @@ test 'config', (t)=>
   data = {test:"12",2:11}
   CONFIG.set(key,data)
   t.deepEqual data, CONFIG.get key
+  CONFIG.set(key,null)
   t.end()
 
 ```
