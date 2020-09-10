@@ -3,9 +3,16 @@
 import {Env} from '@rmw/env'
 import YAML from 'yaml'
 import {dirname, join} from 'path'
-import {existsSync, readFileSync,writeFileSync,mkdirSync, unlinkSync} from 'fs'
+import {existsSync, readFileSync,writeFileSync,mkdirSync,unlinkSync} from 'fs'
 
 ENV = Env(1)
+
+_filepath = (filepath)=>
+  if filepath
+    filepath = join ENV.CONFIG,filepath
+  else
+    filepath = ENV.CONFIG
+  filepath+".yml"
 
 export set = (filepath, data)=>
   if data == undefined
@@ -22,13 +29,6 @@ export set = (filepath, data)=>
       filepath
       out
     )
-
-_filepath = (filepath)=>
-  if not filepath
-    filepath = ENV.CONFIG
-  else
-    filepath = join ENV.CONFIG,filepath
-  filepath+".yml"
 
 export get = (filepath)=>
   filepath = _filepath filepath
