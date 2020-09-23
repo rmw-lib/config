@@ -7,32 +7,29 @@ import {existsSync, readFileSync,writeFileSync,mkdirSync,unlinkSync} from 'fs'
 
 ENV = Env(2)
 
-_filepath = (filepath)=>
-  if filepath
-    filepath = join ENV.CONFIG,filepath
-  else
-    filepath = ENV.CONFIG
-  filepath+".yml"
+export default new Proxy(
+  {}
+  {
+    set:(obj, prop, value)->
+      @get(obj, prop)
+      obj[prop] = value
+      filepath = obj.__filename
+      delete obj.__filename
+      mkdirSync(dirname(filepath), recursive:true)
+      writeFileSync(
+        filepath
+        YAML.stringify obj
+      )
+      obj.__filename = filepath
 
-export set = (filepath, data)=>
-  if data == undefined
-    data = filepath
-    filepath = undefined
-  filepath = _filepath filepath
-  if data == null
-    if existsSync(filepath)
-      unlinkSync(filepath)
-  else
-    mkdirSync(dirname(filepath), recursive:true)
-    out = YAML.stringify data
-    writeFileSync(
-      filepath
-      out
-    )
-
-export get = (filepath)=>
-  filepath = _filepath filepath
-  if existsSync(filepath)
-    data = readFileSync(filepath, 'utf8')
-    return YAML.parse data
-  return {}
+    get:(obj, prop)=>
+      filepath = ENV.CONFIG+".yml"
+      if not obj.__filename
+        obj.__filename = filepath
+        if existsSync(filepath)
+          data = readFileSync(filepath, 'utf8')
+          config = YAML.parse(data) or {}
+          Object.assign obj, config
+      return obj[prop]
+  }
+)
