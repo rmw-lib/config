@@ -11,25 +11,27 @@ export default new Proxy(
   {}
   {
     set:(obj, prop, value)->
-      @get(obj, prop)
-      obj[prop] = value
-      filepath = obj.__filename
-      delete obj.__filename
+      filepath = ENV.CONFIG+".yml"
+      if filepath of o
+        @get(obj, prop)
+      o = obj[filepath]
+      o[prop] = value
       mkdirSync(dirname(filepath), recursive:true)
       writeFileSync(
         filepath
-        YAML.stringify obj
+        YAML.stringify o
       )
-      obj.__filename = filepath
 
     get:(obj, prop)=>
       filepath = ENV.CONFIG+".yml"
-      if not obj.__filename
-        obj.__filename = filepath
+      o = obj[filepath]
+      if not o
         if existsSync(filepath)
           data = readFileSync(filepath, 'utf8')
-          config = YAML.parse(data) or {}
-          Object.assign obj, config
-      return obj[prop]
+          o = YAML.parse(data) or {}
+        else
+          o = {}
+        obj[filepath] = o
+      return o[prop]
   }
 )

@@ -4,5 +4,5 @@ import test from 'tape-catch'
 
 test 'config', (t)=>
   console.log CONFIG.xxx
-  CONFIG.xxx = 123
+  CONFIG.xxx = 52
   t.end()
