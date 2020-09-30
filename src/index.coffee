@@ -12,7 +12,7 @@ export default new Proxy(
   {
     set:(obj, prop, value)->
       filepath = ENV.CONFIG+".yml"
-      if filepath of o
+      if not (filepath of obj)
         @get(obj, prop)
       o = obj[filepath]
       o[prop] = value
