@@ -21,6 +21,7 @@ export default new Proxy(
         filepath
         YAML.stringify o
       )
+      return value
 
     get:(obj, prop)=>
       filepath = ENV.CONFIG+".yml"
