@@ -2,8 +2,7 @@
 
 _DIR=$(cd "$(dirname "$0")"; pwd)
 cd $_DIR
-direnv allow
-git add -u
+npm run prepare
 version=$(cat package.json|jq -r '.version')
 git commit -m $version
 npm set unsafe-perm true
