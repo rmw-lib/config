@@ -11,7 +11,7 @@ export default new Proxy(
   {}
   {
     set:(obj, prop, value)->
-      filepath = ENV.CONFIG+".yml"
+      filepath = ENV.config+".yml"
       if not (filepath of obj)
         @get(obj, prop)
       o = obj[filepath]
@@ -24,7 +24,7 @@ export default new Proxy(
       return value
 
     get:(obj, prop)=>
-      filepath = ENV.CONFIG+".yml"
+      filepath = ENV.config+".yml"
       o = obj[filepath]
       if not o
         if existsSync(filepath)
