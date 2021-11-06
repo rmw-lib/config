@@ -21,7 +21,7 @@ export default new Proxy(
       o[prop] = value
       mkdirSync(dirname(filepath), recursive:true)
       writeFileSync(
-        filepath
+        yml
         YAML.stringify o
       )
       return value
